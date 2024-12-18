@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    {% load static %}
+    <style>
+        /* Общие стили для страницы */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px; /* Увеличен размер шрифта */
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 32px;
+            margin: 20px 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .hamburger-menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .popup-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #333;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        .popup-menu.show {
+            display: block;
+        }
+        .popup-link {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            font-size: 16px; /* Увеличен размер шрифта */
+            transition: background-color 0.3s ease;
+        }
+        .popup-link:hover {
+            background-color: #4CAF50;
+        }
+        .tour-list {
+            margin: 20px 0;
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center; /* Централизованное выравнивание туров */
+        }
+        .tour-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 20px); /* Ширина туров 100% с отступами */
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+        .tour-item:hover {
+            transform: translateY(-5px);
+        }
+        .tour-item img {
+            max-width: 100%;
+            max-height: 150px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .tour-item h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+        .tour-item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .tour-links {
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        .tour-links a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+            transition: text-decoration 0.3s ease;
+        }
+        .tour-links a:hover {
+            text-decoration: underline;
+        }
+        .tour-details {
+            display: none;
+            margin-top: 10px;
+            transition: max-height 0.3s ease;
+        }
+        .tour-details.show {
+            display: block;
+            max-height: 500px; /* или другой подходящий размер */
+            overflow: hidden;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Список туров</h1>
+        <div class="hamburger-menu" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <div id="popup-menu" class="popup-menu">
+        <a href="http://127.0.0.1:8000/operator/login/" class="popup-link">Вход для туроператора</a>
+        <a href="http://127.0.0.1:8000/about_us/" class="popup-link">О нас</a>
+        <a href="http://127.0.0.1:8000/kg/" class="popup-link">О Кыргызстане</a>
+    </div>
+    <div class="welcome-message">
+        Добро пожаловать на наш сайт "Кочевой дух"!
+        Откройте для себя незабываемые путешествия и новые приключения!
+    </div>
+    <ul class="tour-list">
+
+        {% for tour in tours %}
+        <li class="tour-item">
+            {% if tour.image %}
+                <img src="{{ tour.image.url }}" alt="{{ tour.name }} фото">
+            {% else %}
+                <p>Изображение отсутствует</p>
+            {% endif %}
+            <div>
+                <h2>{{ tour.name }}</h2>
+                <p>{{ tour.price }} USD</p>
+                <p><strong>Туроператор:</strong> {{ tour.operator.username }}</p>
+                <p><strong>Рейтинг:</strong> {{ tour.average_rating }} ⭐</p>
+                <button onclick="toggleDetails(this)">Подробнее</button>
+                <div class="tour-details">
+                    <p><strong>Дата начала:</strong> {{ tour.start_date }}</p>
+                    <p><strong>Дата окончания:</strong> {{ tour.end_date }}</p>
+                    <p><strong>Описание:</strong> {{ tour.description }}</p>
+                    <p><strong>Маршрут:</strong> {{ tour.route }}</p>
+                    <p><strong>Что включено:</strong> {{ tour.included }}</p>
+                    <p><strong>Что не включено:</strong> {{ tour.not_included }}</p>
+                    <button onclick="window.location.href='{% url 'book_tour' tour.id %}'" class="book-tour-btn">
+                        Забронировать тур
+                    </button>
+                </div>
+            </div>
+        </li>
+        {% empty %}
+        <p>Туры не найдены</p>
+        {% endfor %}
+
+    </ul>
+    <div class="tour-links">
+        <h3>Контакты:</h3>
+        <a href="https://wa.me/qr/MAHWJOPU6A4JM1" target="_blank">WhatsApp</a>
+        <a href="https://t.me/rumiddd" target="_blank">Telegram</a>
+        <a href="https://www.instagram.com/ulush_travel/" target="_blank">Instagram</a>
+    </div>
+    <script>
+        function toggleDetails(button) {
+            let details = button.nextElementSibling;
+            details.classList.toggle('show');
+        }
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            let menu = document.getElementById('popup-menu');
+            menu.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

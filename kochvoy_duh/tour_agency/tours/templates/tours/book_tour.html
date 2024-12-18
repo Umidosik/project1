@@ -1,0 +1,79 @@
+<!-- book_tour.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование тура</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Бронирование тура: {{ tour.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+
+        <label for="phone">Номер телефона:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Введите номер телефона" required>
+
+        <label for="email">Электронная почта:</label>
+        <input type="email" id="email" name="email" placeholder="Введите вашу почту" required>
+
+        <label for="tour">Выбранный тур:</label>
+        <input type="text" id="tour" name="tour" value="{{ tour.name }}" readonly>
+
+        <label for="operator">Туроператор:</label>
+        <input type="text" id="operator" name="operator" value="{{ tour.operator.username }}" readonly>
+
+        <button type="submit">Забронировать</button>
+    </form>
+
+    <!-- Form for Rating -->
+    <h2>Оцените тур:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ rating_form.as_p }}
+        <button type="submit">Оценить</button>
+    </form>
+</body>
+</html>

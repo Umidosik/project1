@@ -1,0 +1,148 @@
+<!-- C:\Users\HP\PycharmProjects\kochvoy_duh\tour_agency\tours\templates\about_us.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+            box-sizing: border-box;
+            transition: background-color 0.5s ease; /* Анимация фона */
+        }
+        h1 {
+            font-size: 2.8em;
+            color: #2ecc71;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease; /* Анимация появления заголовка */
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #555;
+            animation: slideUp 1s ease-in-out; /* Анимация появления текста */
+        }
+        .contact-info, .about-section {
+            font-size: 1em;
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            color: #34495e;
+            animation: slideUp 1s ease-in-out; /* Анимация появления блока */
+        }
+        .about-section h2 {
+            font-size: 3em;
+            color: #2ecc71;
+            animation: colorChange 1s ease-in-out; /* Анимация изменения цвета заголовка */
+        }
+        .about-section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+            animation: slideUp 1s ease-in-out; /* Анимация появления текста */
+        }
+        .contact-info a, .about-section a {
+            color: #27ae60;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease; /* Анимация цвета при наведении */
+            animation: colorChange 1s ease-in-out; /* Анимация цветовой смены ссылки */
+        }
+        .contact-info a:hover, .about-section a:hover {
+            text-decoration: underline;
+            color: #2ecc71; /* Смена цвета на более светлый зеленый */
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes colorChange {
+            from {
+                color: #2ecc71;
+            }
+            to {
+                color: #34495e;
+            }
+        }
+        .highlight {
+            color: #27ae60;
+            font-weight: bold;
+            animation: colorChange 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>О нас</h1>
+    <p>Добро пожаловать в нашу турфирму! Мы предлагаем широкий выбор туров как по Кыргызстану, так и за его пределами. Наша цель - сделать ваше путешествие незабываемым и комфортным.</p>
+    <p>Наша команда состоит из профессионалов, которые знают все о лучших маршрутах и местах для отдыха. Мы готовы помочь вам выбрать идеальный тур, соответствующий вашим предпочтениям и бюджету.</p>
+    <p>Независимо от того, ищете ли вы экзотическое приключение или спокойный отдых на природе, мы найдем для вас лучший вариант. Путешествуйте с нами – и пусть каждый день будет ярким и запоминающимся!</p>
+
+    <!-- Общая информация о турфирме -->
+    <div class="about-section">
+        <h2>Общая информация</h2>
+        <p>Наша турфирма – это место, где мечты о путешествиях становятся реальностью. Мы стремимся предоставить нашим клиентам не просто туры, а незабываемые впечатления, полные удивительных открытий и новых знакомств.</p>
+        <p>Мы гордимся тем, что предлагаем только проверенные маршруты и безопасные путешествия. Наша команда состоит из опытных гидов и консультантов, которые всегда готовы поделиться своими знаниями и помочь сделать ваш выбор идеальным.</p>
+    </div>
+
+    <!-- Преимущества турфирмы -->
+    <div class="about-section">
+        <h2>Наши Преимущества</h2>
+        <ul style="list-style-type: none; padding: 0;">
+            <li>Широкий выбор туров по всему Кыргызстану и за его пределами.</li>
+            <li>Опытная команда профессионалов, готовая ответить на все ваши вопросы.</li>
+            <li>Безопасные и комфортные маршруты для всех возрастов.</li>
+            <li>Индивидуальный подход к каждому клиенту.</li>
+            <li>Гибкие условия бронирования и отмены.</li>
+            <li>Конкурентные цены на все туры.</li>
+        </ul>
+    </div>
+
+    <!-- Наши ценности -->
+    <div class="about-section">
+        <h2>Наши Ценности</h2>
+        <p>Наша турфирма основывается на трех основополагающих ценностях:</p>
+        <ul style="list-style-type: none; padding: 0;">
+            <li><strong class="highlight">Безопасность:</strong> Мы ставим безопасность наших клиентов на первое место и тщательно проверяем все маршруты перед их предложением.</li>
+            <li><strong class="highlight">Профессионализм:</strong> Наша команда – это эксперты, которые работают с полной отдачей, чтобы предоставить лучший сервис и уникальные туры.</li>
+            <li><strong class="highlight">Ответственность:</strong> Мы уважаем природу и культуру мест, в которые организуем туры, и поддерживаем устойчивое развитие туризма.</li>
+        </ul>
+    </div>
+
+    <!-- Контактные данные турфирмы -->
+    <div class="contact-info">
+        <p>Если у вас есть вопросы или хотите узнать больше, свяжитесь с нами:</p>
+        <p>Email: <a href="mailto:contact@kochvoyduh.com">contact@kochvoyduh.com</a></p>
+        <p>Телефон: <a href="tel:+996555555555">+996 555 55 55 55</a></p>
+        <p>Адрес: г. Бишкек, ул. Иссык-Кульская, д. 12</p>
+        <p><a href="https://www.google.com/maps/place/%D0%98%D1%81%D1%81%D1%8B%D0%BA-%D0%9A%D1%83%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F,+12,+%D0%91%D0%B8%D1%88%D0%BA%D0%B5%D0%BA,+%D0%9A%D1%8B%D1%80%D0%B3%D1%8B%D0%B7%D1%81%D1%82%D0%B0%D0%BD/@42.8740344,74.5860934,17z/data=!3m1!4b1!4m6!3m5!1s0x389b9f7d4a6b1f1d:0x12345abcd12345ab!8m2!3d42.8740344!4d74.5882821!16s%2Fg%2F11gdwszr78?entry=ttu" target="_blank">Посмотреть на карте</a></p>
+    </div>
+</body>
+</html>

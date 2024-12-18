@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание тура</title>
+</head>
+<body>
+    <h1>Создать новый тур</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Создать тур</button>
+    </form>
+    <a href="{% url 'operator_page' %}">Назад</a>
+</body>
+</html>
