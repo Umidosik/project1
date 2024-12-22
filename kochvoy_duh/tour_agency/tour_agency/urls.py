@@ -8,5 +8,15 @@ urlpatterns = [
     path('', include('tours.urls')),  # Подключение маршрутов приложения 'tours'
 ]
 
+
+
+
+
+
+
+
+
+
+
 if settings.DEBUG:  # Обработка медиафайлов в режиме разработки
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
