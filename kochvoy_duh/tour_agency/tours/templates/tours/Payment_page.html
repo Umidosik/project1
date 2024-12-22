@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оплата тура</title>
+</head>
+<body>
+    <h1>Оплата тура</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="tour_id">ID тура:</label>
+            <input type="text" id="tour_id" name="tour_id" required>
+        </p>
+        <p>
+            <label for="full_name">Полное имя:</label>
+            <input type="text" id="full_name" name="full_name" required>
+        </p>
+        <p>
+            <label for="email">Электронная почта:</label>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="card_number">Номер карты:</label>
+            <input type="text" id="card_number" name="card_number" required>
+        </p>
+        <p>
+            <label for="expiry_date">Срок действия карты:</label>
+            <input type="month" id="expiry_date" name="expiry_date" required>
+        </p>
+        <p>
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" name="cvv" maxlength="3" required>
+        </p>
+        <button type="submit">Оплатить</button>
+    </form>
+    <a href="{% url 'operator_page' %}">Назад</a>
+</body>
+</html>
+
