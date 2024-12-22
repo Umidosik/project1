@@ -5,6 +5,7 @@ from .models import Tour, Booking
 from django import forms
 from .models import Rating
 
+
 class TourForm(forms.ModelForm):
     class Meta:
         model = Tour
@@ -72,5 +73,5 @@ class RatingForm(forms.ModelForm):
                 'score': 'Оценка'
             }
             widgets = {
-                'score': forms.Select(choices=[(i, f'{i} звезда{"s" if i > 1 else ""}') for i in range(1, 6)])
+                'score': forms.Select(choices=[(i, f'{i} {"звезды" if i > 1 else "звезда"}') for i in range(1, 6)])
             }
