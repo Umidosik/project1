@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О нас</title>
-
     
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
+        /* Основной стиль */
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #f5f5f5;
@@ -19,6 +19,7 @@
             box-sizing: border-box;
             transition: background-color 0.5s ease; /* Анимация фона */
         }
+        
         h1 {
             font-size: 2.8em;
             color: #2ecc71;
@@ -26,6 +27,7 @@
             margin-bottom: 30px;
             animation: fadeIn 1.5s ease; /* Анимация появления заголовка */
         }
+        
         p {
             font-size: 1.2em;
             line-height: 1.6;
@@ -35,7 +37,8 @@
             color: #555;
             animation: slideUp 1s ease-in-out; /* Анимация появления текста */
         }
-        .contact-info, .about-section {
+
+        .about-section {
             font-size: 1em;
             margin-top: 40px;
             text-align: center;
@@ -44,24 +47,34 @@
             color: #34495e;
             animation: slideUp 1s ease-in-out; /* Анимация появления блока */
         }
+
         .about-section h2 {
-            font-size: 3em;
+            font-size: 2.8em;
             color: #2ecc71;
+            margin-bottom: 20px;
             animation: colorChange 1s ease-in-out; /* Анимация изменения цвета заголовка */
         }
-        .about-section p {
-            font-size: 1.2em;
+        
+        .contact-info {
+            font-size: 1.1em;
+            text-align: center;
+            margin-top: 40px;
+            animation: slideUp 1s ease-in-out; /* Анимация появления блока */
+        }
+        
+        .about-section p, .contact-info p {
+            font-size: 1.1em;
             line-height: 1.6;
             color: #555;
-            animation: slideUp 1s ease-in-out; /* Анимация появления текста */
         }
+
         .contact-info a, .about-section a {
             color: #27ae60;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease; /* Анимация цвета при наведении */
-            animation: colorChange 1s ease-in-out; /* Анимация цветовой смены ссылки */
         }
+        
         .contact-info a:hover, .about-section a:hover {
             text-decoration: underline;
             color: #2ecc71; /* Смена цвета на более светлый зеленый */
@@ -76,6 +89,7 @@
                 opacity: 1;
             }
         }
+        
         @keyframes slideUp {
             from {
                 transform: translateY(50px);
@@ -86,6 +100,7 @@
                 opacity: 1;
             }
         }
+
         @keyframes colorChange {
             from {
                 color: #2ecc71;
@@ -94,10 +109,25 @@
                 color: #34495e;
             }
         }
+
         .highlight {
             color: #27ae60;
             font-weight: bold;
             animation: colorChange 1s ease-in-out;
+        }
+
+        /* Респонсив для мобильных устройств */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            .about-section h2 {
+                font-size: 2.2em;
+            }
+            .contact-info p, .about-section p {
+                font-size: 1em;
+                padding: 0 20px;
+            }
         }
     </style>
 </head>
